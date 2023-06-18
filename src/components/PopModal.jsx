@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const PopModal = ({ setOpenModel, donate, donateFunction, getDonations }) => {
     const [amount, setamount] = useState("")
@@ -7,9 +7,11 @@ const PopModal = ({ setOpenModel, donate, donateFunction, getDonations }) => {
     const createDonation = async () => {
         try {
             const data = await donateFunction(donate.pId, amount)
-           if(data.data != undefined){
-            toast.success("Donation was successful")
-           }
+            if (data.data != undefined) {
+                toast.success("Donation was successful")
+                setOpenModel(false)
+                window.location.reload()
+            }
 
 
         } catch (error) {
@@ -42,8 +44,8 @@ const PopModal = ({ setOpenModel, donate, donateFunction, getDonations }) => {
                                 <span className='text-white  opacity-4 h-8 w-10 rounded-lg text-2xl block outline-none focus:outline-none bg-red-600'> x </span>
                             </button>
                         </div>
-                        <div className='relative p-10 flex-auto'>
-                            <p className='my-4 text-slate-600 text-[10px] leading-relaxed'>{donate.description}</p>
+                        <div className='relative px-10 py-2 flex-auto'>
+                            <p className='mt-1 text-slate-600 text-[10px] leading-relaxed'>{donate.description}</p>
                             <input type="text"
                                 onChange={(e) => setamount(e.target.value)}
                                 placeholder='amount'
@@ -71,7 +73,7 @@ const PopModal = ({ setOpenModel, donate, donateFunction, getDonations }) => {
                 </div>
 
             </div>
-            <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
+            <div className='opacity-30 fixed inset-0 z-40 bg-black'></div>
         </>
     )
 }

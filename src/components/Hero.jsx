@@ -30,7 +30,7 @@ const Hero = ({ titleData, createCampaign }) => {
 
     }
     return (
-        <div className='grid lg:grid-col-2 md:grid-col-1 w-full h-1/2  px-4 py-2 lg:flex justify-between bg-black pt-20 pb-20 '>
+        <div className='bg-gradient-to-r from-black to-pink-700 grid lg:grid-col-2 md:grid-col-1 w-full h-1/2  px-4 py-2 lg:flex justify-between  pt-20 pb-20 rounded-b-l-[20px]'>
             <div className='mr-2  mt-20'>
                 <p className='text-[50px] font-spacegrotesk font-bold text-white'>Web3-CrowdFunding</p>
                 <p className='text-[20px] font-spacegrotesk font-bold text-white my-2'>Create campaign and raise fund in seconds</p>
@@ -43,15 +43,15 @@ const Hero = ({ titleData, createCampaign }) => {
                 </p>
             </div>
             <div className='lg:mx-4 justify-center  md:w-full mt-4'>
-                <form action="" className='flex-col bg-white rounded-lg shadow-lg px-4 py-4'>
-                    <p className='font-bold font-spacegrotesk my-2 flex justify-center' >Create a campaign</p>
-                    <p className='text-[12px]'>Title</p>
+                <form action="" className='flex-col bg-gradient-to-l rounded-lg shadow-lg px-4 py-4'>
+                    <p className='font-bold font-spacegrotesk my-2 flex justify-center text-white' >Create a campaign</p>
+                    <p className='text-[12px] text-white'>Title</p>
                     <TextInput placeholder={"Enter project title"} name={"title"} formData={formData} setformData={setformData} />
-                    <p className='text-[12px]  mt-2 '>Description</p>
+                    <p className='text-[12px]  mt-2 text-white'>Description</p>
                     <TextInput placeholder={"Enter project description "} name={"description"} formData={formData} setformData={setformData} />
-                    <p className='text-[12px] mt-2'>Amount</p>
+                    <p className='text-[12px] mt-2 text-white'>Amount</p>
                     <TextInput placeholder={"Enter project amount"} name={"amount"} formData={formData} setformData={setformData} />
-                    <p className='text-[12px] mt-2'>Deadline</p>
+                    <p className='text-[12px] mt-2 text-white'>Deadline</p>
                     <TextInput placeholder={"Enter project deadline"} name={"deadline"} formData={formData} setformData={setformData} type={"date"} />
 
                     <button
@@ -59,7 +59,7 @@ const Hero = ({ titleData, createCampaign }) => {
                         onClick={(e) => createNewCampaign(e)}
 
 
-                        className='w-full bg-indigo-500 rounded-sm px-2 py-3 text-[13px] mt-2  text-white font-spacegrotesk shadow-2xl focus:shadow-outline'>Create Campaign</button>
+                        className='w-full bg-gradient-to-l border-2 rounded-md border-white border-solid  px-2 py-3 text-[13px] mt-2  text-white font-spacegrotesk shadow-2xl focus:shadow-outline'>Create Campaign</button>
 
                 </form>
             </div>

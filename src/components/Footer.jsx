@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
     return (
         <footer
-            className='grid-1 grid gap-8 sm:grid-col-1 md:grid-cols-2 lg:grid-cols-4 bg-black px-4 py-8'
+            className='bg-gradient-to-r from-black to-pink-700 grid-1 grid gap-8 sm:grid-col-1 md:grid-cols-2 lg:grid-cols-4  px-4 py-8'
         >
             <div className=''>
                 <p className='text-white font-poppins font-semibold my-2'>Products</p>
