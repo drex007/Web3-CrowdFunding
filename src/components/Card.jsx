@@ -46,7 +46,7 @@ const Card = ({ setOpenModel, setDonate, title }) => {
                         className='cursor-pointer border overflow-hidden transition-shadow duration-300 bg-white rounded '
                         key={i}
                         onClick={() => {
-                            if (campaign.target == campaign.amountCollected) {
+                            if (campaign.amountCollected >= campaign.target ) {
                                 toast.warning("You can't donate to this campaign ")
                             } else {
 

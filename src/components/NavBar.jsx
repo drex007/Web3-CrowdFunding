@@ -11,7 +11,7 @@ const NavBar = () => {
         <div className='w-full'>
             <div className='relative bg-gradient-to-r from-black to-pink-700 h-[60px] w-full flex items-center px-4 justify-between'>
                 <div>
-                    <p className='text-white text-2xl font-bold  font-spacegrotesk hover:cursor-pointer'>Aoura</p>
+                    <p className='text-white text-[35px] font-bold  font-spacegrotesk hover:cursor-pointer tracking-[0.5rem]'>Aoura</p>
                 </div>
                 {!showMenuIcon && <div className='hidden md:flex mr-8'>
                     <ul className='flex'>
