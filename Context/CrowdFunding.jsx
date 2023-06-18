@@ -34,7 +34,6 @@ export const CrowdFundingProvider = ({ children }) => {
 
             await transaction.wait();
 
-            console.log('success', transaction, transaction.data);
             return transaction;
 
         } catch (error) {
@@ -45,14 +44,17 @@ export const CrowdFundingProvider = ({ children }) => {
 
     const getCampaigns = async () => {
         const provider = new ethers.providers.JsonRpcProvider();
+
         const contract = fetchContract(provider);
+
         const campaigns = await contract.getCampaigns();
+
 
         const parsedCampaigns = campaigns.map((x, i) => ({
             owner: x.owner,
             title: x.title,
             description: x.description,
-            target: x.target,
+            target: ethers.utils.formatEther(x.target.toString()),
             deadline: x.deadline.toNumber(),
             amountCollected: ethers.utils.formatEther(x.amountCollected.toString()),
             pId: i
@@ -78,7 +80,7 @@ export const CrowdFundingProvider = ({ children }) => {
             description: x.description,
             target: ethers.utils.formatEther(x.target.toString()),
             deadline: x.deadline.toNumber(),
-            amountCollected: ethers.utils.formatEther(x.campaign.amountCollected.toString()),
+            amountCollected: ethers.utils.formatEther(x.amountCollected.toString()),
             pId: i,
         }));
 
@@ -99,7 +101,7 @@ export const CrowdFundingProvider = ({ children }) => {
         });
         await campaignData.wait();
 
-        location.reload();
+        // location.reload();
 
         return campaignData;
     }
@@ -113,6 +115,9 @@ export const CrowdFundingProvider = ({ children }) => {
         for (let i = 0; i < numberOfDonations; i++) {
             parsedDonations.push({ donator: donations[0][i], donation: ethers.utils.formatEther(donations[1][i].toString()) });
         }
+
+        return parsedDonations
+
     }
 
     const checkIfWalletConnected = async () => {

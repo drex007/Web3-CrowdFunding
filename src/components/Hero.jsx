@@ -19,11 +19,12 @@ const Hero = ({ titleData, createCampaign }) => {
             console.log(response.data);
             if (response.data != undefined) {
                 await toast.success("Campaign created successfully");
+                window.location.reload()
 
             }
         } catch (error) {
             toast.warning("Campaign was not created");
-            console.log(error, ":Campaign error");
+
 
         }
 

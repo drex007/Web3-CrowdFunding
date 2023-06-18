@@ -5,36 +5,6 @@ import { Hero, Card } from './components'
 import PopModal from "./components/PopModal";
 
 const index = () => {
-    const {
-        titleData,
-        getCampaigns,
-        createCampaign,
-        donate,
-        getUserCampaigns,
-        getDonations
-    } = useContext(CrowdFundingContext);
-
-    const [allCampaigns, setAllCampaigns] = useState()
-    const [usercampaign, setUsercampaign] = useState()
-
-    useEffect(() => {
-        const getCampaignData = getCampaigns();
-        const userCampaignData = getUserCampaigns();
-        return async () => {
-            const allData = await getCampaignData;
-            const userData = userCampaignData;
-            setAllCampaigns(allData);
-            setUsercampaign(userData);
-        }
-
-
-    }, [])
-
-
-    //POP UP Modal
-
-    const [openModel, setOpenModel] = useState(false)
-    const [donateCampaign, setDonateCampaign] = useState()
 
     console.log(donateCampaign);
 
