@@ -1,8 +1,14 @@
 import React, { useState, useContext } from 'react'
 import TextInput from './widgets/TextInput'
 import { ToastContainer, toast } from 'react-toastify';
+import ButtonLoader from './button/buttonLoader';
+import { ethers } from "ethers";
+// import Web3Modal from "web3modal";
+import { CrowdFundingContext } from '../../Context/CrowdFunding';
+
 
 const Hero = ({ titleData, createCampaign }) => {
+    const { createCampaignLoadingState, setCreateCampaignLoadingState, fetchContract } = useContext(CrowdFundingContext)
 
     const [formData, setformData] = useState({
         title: "",
@@ -13,15 +19,22 @@ const Hero = ({ titleData, createCampaign }) => {
 
     const createNewCampaign = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        // const web3Modal = new Web3Modal();
+        // const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner();
+        const contract = fetchContract(signer);
         try {
             const response = await createCampaign(formData);
-            console.log(response.data);
-            if (response.data != undefined) {
-                await toast.success("Campaign created successfully");
-                window.location.reload()
+            contract.on("CampaignEvent", (_from, _value) => {
+                toast.success("Campaign created successfully");
+                setCreateCampaignLoadingState(false)
 
-            }
+            })
+            window.location.reload()
+
+
+
         } catch (error) {
             toast.warning("Campaign was not created");
 
@@ -30,9 +43,9 @@ const Hero = ({ titleData, createCampaign }) => {
 
     }
     return (
-        <div className='bg-gradient-to-r from-black to-pink-700 grid lg:grid-col-2 md:grid-col-1 w-full h-1/2  px-4 py-2 lg:flex justify-between  pt-20 pb-20 rounded-b-l-[20px]'>
-            <div className='mr-2  mt-20'>
-                <p className='text-[50px] font-spacegrotesk font-bold text-white'>Web3-CrowdFunding</p>
+        <div className='overflow-x-hidden bg-gradient-to-r from-black to-pink-700 grid lg:grid-col-2 md:grid-col-1  w-full h-1/2  py-2 lg:flex justify-between  pt-20 pb-20 rounded-b-l-[20px]'>
+            <div className='mr-2  mt-20 pl-2 '>
+                <p className='text-[40px] font-spacegrotesk font-bold text-white'>Web3-CrowdFunding</p>
                 <p className='text-[20px] font-spacegrotesk font-bold text-white my-2'>Create campaign and raise fund in seconds</p>
 
                 <p className='text-white font-poppins text-[14px] '>
@@ -45,7 +58,7 @@ const Hero = ({ titleData, createCampaign }) => {
 
                 </p>
             </div>
-            <div className='lg:mx-4 justify-center  md:w-full mt-4'>
+            <div className='lg:mx-4 justify-center  md:w-full mt-4 px-2 '>
                 <form action="" className='flex-col bg-gradient-to-l rounded-lg shadow-lg px-4 py-4'>
                     <p className='font-bold font-spacegrotesk my-2 flex justify-center text-white' >Create a campaign</p>
                     <p className='text-[12px] text-white'>Title</p>
@@ -57,12 +70,15 @@ const Hero = ({ titleData, createCampaign }) => {
                     <p className='text-[12px] mt-2 text-white'>Deadline</p>
                     <TextInput placeholder={"Enter project deadline"} name={"deadline"} formData={formData} setformData={setformData} type={"date"} />
 
-                    <button
+                    {!createCampaignLoadingState ? <button
                         type="submit"
                         onClick={(e) => createNewCampaign(e)}
 
 
-                        className='w-full bg-gradient-to-l border-2 rounded-md border-white border-solid  px-2 py-3 text-[13px] mt-2  text-white font-spacegrotesk shadow-2xl focus:shadow-outline'>Create Campaign</button>
+                        className='w-full bg-gradient-to-l border-2 rounded-md border-white border-solid  px-2 py-3 text-[13px] mt-2  text-white font-spacegrotesk shadow-2xl focus:shadow-outline'>
+                        Create Campaign
+
+                    </button> : <ButtonLoader />}
 
                 </form>
             </div>

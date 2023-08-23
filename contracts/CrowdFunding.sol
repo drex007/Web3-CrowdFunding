@@ -16,8 +16,13 @@ struct  Campaign {
 }
 
 
+
 mapping (uint256 => Campaign) public campaigns;
 uint256 public numberOfCampaigns = 0;
+
+//Events
+event CampaignEvent(address indexed _from, uint256 _value);
+event DonateEvent(address indexed _from, uint256 _value);
 
 
 
@@ -33,6 +38,7 @@ uint256 public numberOfCampaigns = 0;
         campaign.deadline= _deadline;
 
         numberOfCampaigns++;
+        emit CampaignEvent(_owner, _target);
         return numberOfCampaigns - 1;
 
     }
@@ -46,6 +52,8 @@ uint256 public numberOfCampaigns = 0;
 
         if(sent){
              campaign.amountCollected = campaign.amountCollected + amount;
+             emit DonateEvent(msg.sender, amount);
+
         }
     }
 

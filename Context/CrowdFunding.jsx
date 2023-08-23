@@ -4,25 +4,25 @@ import { ethers } from 'ethers';
 
 
 import { CrowdFundingABI, CrowdFundingAddress } from './constants';
-
-const fetchContract = (signerOrProvider) => new ethers.Contract(CrowdFundingAddress, CrowdFundingABI, signerOrProvider);
 export const CrowdFundingContext = React.createContext();
 
 export const CrowdFundingProvider = ({ children }) => {
     const titleData = "Crowd Funding Contract";
     const [currentAccount, setCurrentAccount] = useState("");
-
+    const [createCampaignLoadingState, setCreateCampaignLoadingState] = useState(false)
+    
+    
+    const fetchContract = (signerOrProvider) => new ethers.Contract(CrowdFundingAddress, CrowdFundingABI, signerOrProvider);
 
     const createCampaign = async (campaign) => {
+        setCreateCampaignLoadingState(true)
         const { title, description, amount, deadline } = campaign;
-        console.log(campaign);
+
         const web3Modal = new Web3Modal();
         const connection = await web3Modal.connect();
         const provider = new ethers.providers.Web3Provider(connection)
-        console.log('passes');
         const signer = provider.getSigner();
         const contract = fetchContract(signer);
-        console.log(currentAccount, 'Got here');
         try {
             const transaction = await contract.createCampaign(
                 currentAccount,
@@ -33,17 +33,20 @@ export const CrowdFundingProvider = ({ children }) => {
             );
 
             await transaction.wait();
+            setCreateCampaignLoadingState(false)
 
             return transaction;
 
         } catch (error) {
+            setCreateCampaignLoadingState(false)
 
 
         }
     }
 
     const getCampaigns = async () => {
-        const provider = new ethers.providers.JsonRpcProvider();
+        console.log("Called ");
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
 
         const contract = fetchContract(provider);
 
@@ -64,7 +67,7 @@ export const CrowdFundingProvider = ({ children }) => {
     }
 
     const getUserCampaign = async () => {
-        const provider = new ethers.providers.JsonRpcProvider()
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const contract = fetchContract(provider);
         const allCampaigns = await contract.getCampaigns();
         const accounts = await window.ethereum.request({
@@ -72,7 +75,7 @@ export const CrowdFundingProvider = ({ children }) => {
         });
 
         const currentUser = accounts[0];
-        const filteredCampaigns = allCampaigns.filter((x) => x.owner === "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
+        const filteredCampaigns = allCampaigns.filter((x) => x.owner === "0x213b8b96F839f233D6eBBeaB59A72FB6c61C548A");
 
         const userData = filteredCampaigns.map((x, i) => ({
             owner: x.owner,
@@ -106,7 +109,7 @@ export const CrowdFundingProvider = ({ children }) => {
         return campaignData;
     }
     const getDonations = async (pId) => {
-        const provider = new ethers.providers.JsonRpcProvider();
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const contract = fetchContract(provider);
 
         const donations = await contract.getDonators(pId);
@@ -154,7 +157,6 @@ export const CrowdFundingProvider = ({ children }) => {
             });
             console.log('accounts', accounts[0]);
             setCurrentAccount(accounts[0]);
-            console.log('settttttttt');
 
 
         } catch (error) {
@@ -174,7 +176,10 @@ export const CrowdFundingProvider = ({ children }) => {
                     getUserCampaign,
                     donate,
                     getDonations,
-                    connectWallet
+                    connectWallet,
+                    setCreateCampaignLoadingState,
+                    createCampaignLoadingState,
+                    fetchContract
                 }} >
                 {children}
             </CrowdFundingContext.Provider>

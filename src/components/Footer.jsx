@@ -15,10 +15,10 @@ const Footer = () => {
             </div>
             <div className=''>
                 <p className='text-white font-poppins font-semibold my-2 '>Support</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@gmail.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@twitter.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@instagram.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@facebook.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@gmail.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@twitter.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@instagram.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@facebook.com</p>
 
             </div>
             <div className=''>
@@ -31,10 +31,10 @@ const Footer = () => {
             </div>
             <div className=''>
                 <p className='text-white font-poppins font-semibold my-2'>Contact</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@gmail.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@twitter.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@instagram.com</p>
-                <p className='text-white my-2 text-[13px]'>Apollok@facebook.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@gmail.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@twitter.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@instagram.com</p>
+                <p className='text-white my-2 text-[13px]'>Aoura@facebook.com</p>
 
             </div>
 

@@ -17,7 +17,7 @@ async function main() {
   // await CrowdFunding.waitForDeployment();
   const crowdFunding = await factoryInstance.deploy()
   await crowdFunding.deployed()
-  console.log(crowdFunding.address, "adress");
+  console.log(crowdFunding.address, "Contract adress");
 
 
 }

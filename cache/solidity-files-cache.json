@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/viktor/Documents/projects/web3/crowdfunding/contracts/CrowdFunding.sol": {
-      "lastModificationDate": 1686941298568,
-      "contentHash": "6ad38c5d7a60fd6789ce9c6a9ddaea75",
+      "lastModificationDate": 1688215538059,
+      "contentHash": "30d05937daa6f2dace9cb97f1046472a",
       "sourceName": "contracts/CrowdFunding.sol",
       "solcConfig": {
         "version": "0.8.17",

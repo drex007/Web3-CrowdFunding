@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { CrowdFundingContext } from '../../Context/CrowdFunding'
 import { FiMenu } from 'react-icons/fi'
-import {CgCloseR} from 'react-icons/cg'
+import { CgCloseR } from 'react-icons/cg'
 
 const NavBar = () => {
     const navBarLinks = ["Home", "About", "Donations"]
     const { currentAccount, connectWallet } = useContext(CrowdFundingContext)
     const [showMenuIcon, setshowMenuIcon] = useState(false)
+   
     return (
         <div className='w-full'>
             <div className='relative bg-gradient-to-r from-black to-pink-700 h-[60px] w-full flex items-center px-4 justify-between'>
@@ -25,8 +26,8 @@ const NavBar = () => {
 
                             connectWallet()
                         }}
-                        className='bg-indigo-300 rounded-sm px-2 py-1 text-[10px] ' type="button">ConnectWallet</button> : <p className=' ml-2 px-2 py-1 w-[100px] text-[10px] bg-orange-500 rounded-sm text-white hover:cursor-pointer'>
-                        Disconnect Wallet
+                        className='bg-pink-300 rounded-sm px-2 py-1 text-[15px] font-bold  ' type="button">ConnectWallet</button> : <p className=' ml-2 px-2 py-1 w-[100px] text-[10px] bg-orange-500 rounded-sm text-white hover:cursor-pointer'>
+                        {currentAccount.slice(0, 12)}.....
                     </p>
 
                     }
@@ -37,8 +38,8 @@ const NavBar = () => {
 
                 </div>}
                 {showMenuIcon && <div className='md:hddeen mr-4 text-white text-[12px]  rounded-sm hover:cursor-pointer'>
-                   <CgCloseR onClick={() => { setshowMenuIcon(false) }} size={25}/>
-                  
+                    <CgCloseR onClick={() => { setshowMenuIcon(false) }} size={25} />
+
                 </div>}
             </div>
             {showMenuIcon && <div className='md:flex-col  bg-gradient-to-r from-black to-pink-700'>
@@ -53,8 +54,8 @@ const NavBar = () => {
 
                         connectWallet()
                     }}
-                    className='bg-indigo-300 rounded-sm px-2 py-1 text-[10px]  ml-2' type="button">ConnectWallet</button> : <p className='ml-2 px-2 py-1 w-[100px] text-[10px] bg-orange-500 rounded-sm text-white hover:cursor-pointer'>
-                    Disconnect Wallet
+                    className='bg-pink-300 rounded-sm px-2 py-1 text-[10px] font-bold ml-2' type="button">ConnectWallet</button> : <p className='ml-2 px-2 py-1 w-[100px] text-[10px] bg-orange-500 rounded-sm text-white hover:cursor-pointer'>
+                    {currentAccount.slice(0, 12)}.....
                 </p>
 
                 }

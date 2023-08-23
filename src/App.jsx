@@ -46,7 +46,7 @@ function App() {
 
 
   return (
-    <>
+    <div className=''>
       <ToastContainer />
       <NavBar />
       <Hero titleData={titleData} createCampaign={createCampaign} />
@@ -67,7 +67,7 @@ function App() {
       />)}
 
       <Footer />
-    </>
+    </div>
   )
 }
 

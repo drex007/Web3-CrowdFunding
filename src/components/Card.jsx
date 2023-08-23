@@ -35,7 +35,7 @@ const Card = ({ setOpenModel, setDonate, title }) => {
 
     }, [])
     return (
-        <div className='bg-gradient-to-r from-black to-pink-700 px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg: max-w-screen-sxl md:px-24 lg:px-8 lg:py-10'>
+        <div className='bg-gradient-to-r from-black to-pink-700 px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg: max-w-screen-sxl md:px-4 lg:px-8 lg:py-10 '>
             <p className='py-4 text-2xl font-bold leading-5 text-white'>
                 {title}
             </p>
